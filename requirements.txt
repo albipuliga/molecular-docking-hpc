@@ -1,0 +1,12 @@
+numpy>=2.0.1
+matplotlib>=3.9.2
+
+vina>=1.2.5          # For molecular docking simulations
+boost-cpp>=1.78.0    # C++ boost libraries required by vina
+swig>=4.0.2          # Required for building Python extensions
+
+pandas>=2.0.0
+scipy>=1.11.0
+
+jupyter>=1.0.0
+ipykernel>=6.0.0
