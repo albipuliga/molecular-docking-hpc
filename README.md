@@ -39,8 +39,6 @@ cd molecular-docking-hpc
 
 ### Environment Setup
 
-Install the dependencies by running these commands in sequence:
-
 #### 1. Create and activate conda environment
 
 ```bash
