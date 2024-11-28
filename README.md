@@ -26,7 +26,9 @@ This project leverages parallel processing to significantly reduce computation t
 
 - Utilization of thread pools for efficient task distribution.
 - A scalable design capable of handling high-throughput docking studies.
-- Benchmarks showing up to **10** speedup for certain workloads, highlighting the impact of parallelization on computational efficiency.
+- Benchmarks showing up to **10x** speedup for certain workloads, highlighting the impact of parallelization on computational efficiency.
+
+![alt text](image.png)
 
 ## Features
 
