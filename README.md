@@ -1,6 +1,6 @@
 # Molecular Docking Optimization with HPC
 
-This project demonstrates the power of **High-Performance Computing (HPC)** in molecular docking simulations by implementing parallelization techniques with **OpenMP**. Using AutoDock Vina as the core docking engine, the project provides a comprehensive benchmarking system to analyze performance improvements across different threading configurations.
+This project demonstrates the power of **High-Performance Computing (HPC)** in molecular docking simulations by implementing parallelization techniques with **OpenMP**. Using [**RDKit**](https://www.rdkit.org/) as the core docking engine, the project provides a comprehensive benchmarking system to analyze performance improvements across different threading configurations.
 
 ## Table of Contents
 
@@ -10,9 +10,11 @@ This project demonstrates the power of **High-Performance Computing (HPC)** in m
   - [Features](#features)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
-    - [Clone the Repository](#clone-the-repository)
-  - [Usage](#usage)
-  - [Performance Analysis](#performance-analysis)
+    - [Clone the repository](#clone-the-repository)
+    - [Environment Setup](#environment-setup)
+      - [1. Create and activate conda environment](#1-create-and-activate-conda-environment)
+      - [2. Install core numerical libraries](#2-install-core-numerical-libraries)
+        - [3. Install RDKit and other dependencies](#3-install-rdkit-and-other-dependencies)
 
 ## Overview
 
@@ -20,82 +22,40 @@ Molecular docking is a computational technique used in drug discovery to predict
 
 ## Features
 
-- **OpenMP Parallelization**: Efficient multi-threaded execution of docking simulations
-- **Comprehensive Benchmarking**: Performance analysis across different thread counts (1, 2, 4, 8)
-- **Resource Monitoring**: Detailed tracking of CPU utilization and memory usage patterns
-- **Performance Visualization**: Generation of comparative plots showing execution times and resource usage
-- **Automated Analysis**: Python scripts for processing and analyzing docking results
-- **Jupyter Integration**: Interactive notebooks for visualization and analysis
-
 ## Installation
 
 ### Prerequisites
 
-1. **Python Environment Setup**
+1. Python 3.9
+2. Git
+3. Conda (required)
 
-   ```bash
-   conda create -n moldock python=3.9
-   conda activate moldock
-   ```
-
-2. **Required Dependencies**
-
-   ```bash
-   conda install -c conda-forge vina "boost-cpp>=1.78.0" swig numpy
-   conda install matplotlib pandas scipy jupyter
-   ```
-
-   Or install using the provided requirements file:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Clone the Repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/albipuliga/molecular-docking-hpc.git
 cd molecular-docking-hpc
 ```
 
-## Usage
+### Environment Setup
 
-1. **Prepare Input Files**:
+Install the dependencies by running these commands in sequence:
 
-   - Place your receptor (protein) file in **_PDBQT_** format in the `data/receptor/` directory
-   - Place your ligand files in **_PDBQT_** format in the `data/ligands/` directory
+#### 1. Create and activate conda environment
 
-2. **Run Benchmarks**:
+```bash
+conda create -n docking python=3.9 -y
+conda activate docking
+```
 
-   ```python
-   from molecular_docking import MolecularDocking
+#### 2. Install core numerical libraries
 
-   # Initialize docking simulation
-   docking = MolecularDocking(
-       receptor_file="data/receptor/protein.pdbqt",
-       ligand_file="data/ligands/ligand.pdbqt",
-       center=(0, 0, 0),
-       box_size=(20, 20, 20)
-   )
+```bash
+conda install -c conda-forge numpy scipy lapack blas -y
+```
 
-   # Run benchmarks
-   results = docking.benchmark(thread_counts=[1, 2, 4, 8])
+##### 3. Install RDKit and other dependencies
 
-   # Generate visualization
-   docking.plot_benchmarks(results)
-   ```
-
-3. **Analyze Results**:
-   - Launch Jupyter notebook:
-     ```bash
-     jupyter notebook notebooks/benchmark_analysis.ipynb
-     ```
-
-## Performance Analysis
-
-The project includes comprehensive benchmarking capabilities that measure:
-
-- Execution time across different thread counts
-- CPU utilization patterns
-- Memory usage profiles
-- Speedup and efficiency metrics
+```bash
+conda install -c conda-forge rdkit matplotlib seaborn scikit-learn -y
+```
